@@ -1,23 +1,23 @@
 package web.service;
 
-import web.model.Car;
+import web.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarServiceImp implements CarService{
-    private List<Car> cars = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     public CarServiceImp() {
-        cars.add(new Car("AUDI", 200, "BLACK"));
-        cars.add(new Car("VOLKSWAGEN", 180, "WHITE"));
-        cars.add(new Car("PORSCHE",250, "YELLOW"));
-        cars.add((new Car("BMW", 230, "BLUE")));
-        cars.add(new Car("LAMBORGHINI", 300, "GREEN"));
+        users.add(new User("AUDI", 200, "BLACK"));
+        users.add(new User("VOLKSWAGEN", 180, "WHITE"));
+        users.add(new User("PORSCHE",250, "YELLOW"));
+        users.add((new User("BMW", 230, "BLUE")));
+        users.add(new User("LAMBORGHINI", 300, "GREEN"));
     }
 
     @Override
-    public List<Car> getAllCar() {
-        return cars ;
+    public List<User> getAllCar() {
+        return users;
     }
 }
