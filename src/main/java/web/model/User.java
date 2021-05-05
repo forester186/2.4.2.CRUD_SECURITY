@@ -1,46 +1,87 @@
 package web.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "people")
+
 public class User {
-    private String model;
-    private int speed;
-    private String color;
 
-    public User(String model, int speed, String color) {
-        this.model = model;
-        this.speed = speed;
-        this.color = color;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "email")
+    private String email;
+
+    public User(String name, String surname, int age, String email) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.email = email;
     }
 
-    public String getModel() {
-        return model;
+    public User() {
+
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public Long getId() {
+        return id;
     }
 
-    public int getSpeed() {
-        return speed;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public String getName() {
+        return name;
     }
 
-    public String getColor() {
-        return color;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "Car{" +
-                "model='" + model + '\'' +
-                ", speed=" + speed +
-                ", color='" + color + '\'' +
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
