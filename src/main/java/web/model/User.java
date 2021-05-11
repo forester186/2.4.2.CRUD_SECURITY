@@ -1,14 +1,15 @@
 package web.model;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "people")
-
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")
@@ -23,15 +24,32 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    public User(String name, String surname, int age, String email) {
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "people_roles",
+            joinColumns = { @JoinColumn(name = "person_id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id") }
+    )
+    private List<Role> roles;
+
+    public User() {
+
+    }
+
+    public User(String name, String surname, int age, String email, List<Role> roles) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
+        this.roles = roles;
     }
 
-    public User() {
+    public List<Role> getRole() { return roles;
+    }
 
+
+    public void setRole(List<Role> role) {
+        this.roles = role;
     }
 
     public Long getId() {

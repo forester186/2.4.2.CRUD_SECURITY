@@ -3,8 +3,13 @@ package web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import web.model.Role;
 import web.model.User;
 import web.service.UserService;
+
+import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/people")
@@ -25,6 +30,7 @@ public class UsersController {
     @GetMapping("/new")
     public String newUser(ModelMap modelMap){
         modelMap.addAttribute("person", new User());
+        modelMap.addAttribute("roleList", userService.getAllRole());
         return "people/new";
     }
 
@@ -33,6 +39,7 @@ public class UsersController {
         userService.saveUser(user);
         return "redirect:/people";
     }
+
 
     @GetMapping("/{id}/update")
     public String getUpdate(ModelMap modelMap, @PathVariable("id") Long id){

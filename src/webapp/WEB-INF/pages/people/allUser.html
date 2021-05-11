@@ -12,6 +12,7 @@
         <th>Surname</th>
         <th>Age</th>
         <th>Email</th>
+        <th>Role</th>
         <th>Actions</th>
     </tr>
     <tr th:each="user: ${people}">
@@ -20,6 +21,7 @@
         <td th:utext="${user.surname}">Surname</td>
         <td th:utext="${user.age}">Age</td>
         <td th:utext="${user.email}">Email</td>
+        <td th:utext="${user.role}">Role</td>
         <td><a th:href="@{/people/{id}/update(id=${user.id})}">Edit</a>
             <a th:href="@{/people/{id}(id=${user.id})}">Delete</a>
         </td>

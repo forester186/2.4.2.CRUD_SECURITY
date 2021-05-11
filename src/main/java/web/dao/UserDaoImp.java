@@ -15,6 +15,11 @@ public class UserDaoImp implements UserDao{
     private EntityManager entityManager;
 
     @Override
+    public User getUserByName(String name) {
+        return null;
+    }
+
+    @Override
     public void saveUser(User user) {
         entityManager.persist(user);
     }

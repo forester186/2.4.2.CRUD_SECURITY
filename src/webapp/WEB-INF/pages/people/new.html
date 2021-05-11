@@ -26,6 +26,18 @@
     <input type="text" th:field="*{email}" id="email" style=position:absolute;left:5%;>
 
     <br>
+
+    <p>
+        <label>Roles:
+            <input type="checkbox" name="roleList"
+                   th:each="role1 : ${roleList}"
+                   th:text="${role1.role}"
+                   th:value="${role1.role}"
+                   th:field="*{role}"
+            />
+        </label>
+    </p>
+    <br>
     <br>
 
     <input type="submit" value="Create new User">
