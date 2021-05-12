@@ -13,6 +13,8 @@ public interface UserService {
 
     List<Role> getAllRole();
 
+    void saveRole(Role role);
+
     User gerUser(Long id);
 
     void deleteUser(Long id);

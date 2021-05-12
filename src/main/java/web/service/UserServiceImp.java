@@ -2,7 +2,6 @@ package web.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.dao.RoleDao;
 import web.dao.UserDao;
 import web.model.Role;
 import web.model.User;
@@ -16,17 +15,21 @@ import java.util.List;
 public class UserServiceImp implements UserService {
 
     private final UserDao userDao;
-    private final RoleDao roleDao;
 
-    public UserServiceImp(UserDao userDao, RoleDao roleDao) {
+    public UserServiceImp(UserDao userDao) {
         this.userDao = userDao;
-        this.roleDao = roleDao;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Role> getAllRole() {
+        return userDao.getAllRole();
     }
 
     @Transactional
     @Override
-    public List<Role> getAllRole() {
-        return roleDao.getAllRole();
+    public void saveRole(Role role) {
+        userDao.saveRole(role);
     }
 
     @Transactional

@@ -1,6 +1,7 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
+import web.model.Role;
 import web.model.User;
 
 import javax.persistence.EntityManager;
@@ -23,6 +24,17 @@ public class UserDaoImp implements UserDao{
     public void saveUser(User user) {
         entityManager.persist(user);
     }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Role> getAllRole() {
+        return entityManager.createQuery("select r from Role r", Role.class).getResultList();
+    }
+
+    @Override
+    public void saveRole(Role role) {
+            entityManager.persist(role);
+        }
 
     @Override
     @SuppressWarnings("unchecked")

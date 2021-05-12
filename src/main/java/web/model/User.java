@@ -1,5 +1,7 @@
 package web.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +11,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -24,7 +26,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "people_roles",
             joinColumns = { @JoinColumn(name = "person_id") },
@@ -32,16 +34,20 @@ public class User {
     )
     private List<Role> roles;
 
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
     public User() {
 
     }
 
-    public User(String name, String surname, int age, String email, List<Role> roles) {
+    public User(String name, String surname, int age, String email) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
-        this.roles = roles;
+
     }
 
     public List<Role> getRole() { return roles;

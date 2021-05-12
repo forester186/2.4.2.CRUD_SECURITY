@@ -3,26 +3,25 @@ package web.model;
 import javax.persistence.*;
 import java.util.Set;
 
-
 @Entity
 @Table(name = "roles")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
     public String role;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-    private Set<User> users;
+//    @ManyToMany(mappedBy = "roles")
+//    private Set<User> users;
 
     public Role() {
 
     }
 
-    public Role(String role){
+    public Role(String role) {
         this.role = role;
     }
 
