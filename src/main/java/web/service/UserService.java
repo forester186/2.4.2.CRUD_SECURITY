@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface UserService {
-    void saveUser(User user);
+    void saveUser(User user, String[] roleList);
 
     List<User> getAllUser();
 
@@ -19,5 +19,7 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    void updateUser(Long id, User user);
+    void updateUser(Long id, User user, String[] roleList);
+
+    User getUserByName(String name);
 }

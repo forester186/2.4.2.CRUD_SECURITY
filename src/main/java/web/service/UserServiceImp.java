@@ -5,11 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.model.Role;
 import web.model.User;
-
-
 import java.util.List;
-
-
 
 @Service
 public class UserServiceImp implements UserService {
@@ -34,8 +30,8 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public void saveUser(User user) {
-        userDao.saveUser(user);
+    public void saveUser(User user, String[] roleList) {
+        userDao.saveUser(user, roleList);
     }
 
     @Transactional(readOnly = true)
@@ -58,7 +54,12 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public void updateUser(Long id, User user) {
-        userDao.updateUser(id, user);
+    public void updateUser(Long id, User user, String[] roleList) {
+        userDao.updateUser(id, user, roleList);
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
     }
 }

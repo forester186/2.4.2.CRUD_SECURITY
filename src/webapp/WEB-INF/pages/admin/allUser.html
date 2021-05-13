@@ -13,6 +13,7 @@
         <th>Age</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Password</th>
         <th>Actions</th>
     </tr>
     <tr th:each="user: ${people}">
@@ -22,13 +23,18 @@
         <td th:utext="${user.age}">Age</td>
         <td th:utext="${user.email}">Email</td>
         <td th:utext="${user.role}">Role</td>
-        <td><a th:href="@{/people/{id}/update(id=${user.id})}">Edit</a>
-            <a th:href="@{/people/{id}(id=${user.id})}">Delete</a>
+        <td th:utext="${user.password}">Password</td>
+        <td><a th:href="@{/admin/{id}/update(id=${user.id})}">Edit</a>
+            <a th:href="@{/admin/{id}(id=${user.id})}">Delete</a>
         </td>
     </tr>
 </table>
 <br/>
 <hr/>
-<h2><a href="/people/new">Create new User</a></h2>
+<h2><a href="/admin/new">Create new User</a></h2>
+
+<h2><a href="/logout">Log Out</a></h2>
+
+
 </body>
 </html>
